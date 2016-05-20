@@ -1,5 +1,6 @@
 class Tail < ActiveRecord::Base
   belongs_to :user
+  has_many :crumbs
 
   validates_presence_of :name
 

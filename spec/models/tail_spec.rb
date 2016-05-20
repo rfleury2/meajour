@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Tail, type: :model do
   it { should belong_to(:user) }
+  it { should have_many(:crumbs) }
   it { should validate_presence_of(:name) }
 
   context 'name scoping -' do
