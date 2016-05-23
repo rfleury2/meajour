@@ -3,7 +3,7 @@ class CreateCrumbs < ActiveRecord::Migration
     create_table :crumbs do |t|
       t.float :measurement
       t.datetime :record_date
-      t.belongs_to :tail
+      t.belongs_to :track
 
       t.timestamps
     end

@@ -19,12 +19,12 @@ ActiveRecord::Schema.define(version: 20160520195430) do
   create_table "crumbs", force: :cascade do |t|
     t.float    "measurement"
     t.datetime "record_date"
-    t.integer  "tail_id"
+    t.integer  "track_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "tails", force: :cascade do |t|
+  create_table "tracks", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
     t.datetime "created_at"

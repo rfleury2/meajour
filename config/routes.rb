@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   namespace 'api' do
-    resources :tails, only: [:index, :create, :update, :destroy] do
+    resources :tracks, only: [:index, :create, :update, :destroy] do
       resources :crumbs, only: [:create, :update, :destroy]
     end
   end

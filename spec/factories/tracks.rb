@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :tail do
+  factory :track do
     name Faker::Name.title
     association :user, factory: :user
   end

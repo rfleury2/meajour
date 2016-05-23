@@ -1,21 +1,21 @@
 require 'rails_helper'
 
-RSpec.describe Api::TailsController, type: :controller do
+RSpec.describe Api::TracksController, type: :controller do
   let!(:user) { FactoryGirl.create(:user) }
 
   context 'no current user' do
     before do
-      allow_any_instance_of(Api::TailsController).to receive(:current_user).and_return(nil)
+      allow_any_instance_of(Api::TracksController).to receive(:current_user).and_return(nil)
     end
   end
 
   context 'with current user' do
     before do
-      allow_any_instance_of(Api::TailsController).to receive(:current_user).and_return(user)
+      allow_any_instance_of(Api::TracksController).to receive(:current_user).and_return(user)
     end
 
     describe '#index' do
-      context 'no tails' do
+      context 'no tracks' do
         before do
           response = get :index
         end
@@ -24,7 +24,7 @@ RSpec.describe Api::TailsController, type: :controller do
         end
       end
 
-      context 'with tails' do
+      context 'with tracks' do
 
       end
     end
