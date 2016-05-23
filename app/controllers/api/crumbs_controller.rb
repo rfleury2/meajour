@@ -3,8 +3,8 @@ class Api::CrumbsController < ApplicationController
   before_filter :get_and_authorize_tail
 
   def create
-    @crumb = @tail.crumbs.new(crumbs_params)
-    if @crumb.save
+    @crumb = @tail.crumbs.new(crumb_params)
+    if @crumb && @crumb.save
       render json: @crumb
     else
       render nothing: true, status: 401
@@ -13,12 +13,16 @@ class Api::CrumbsController < ApplicationController
 
   def update
     get_crumb
-    @crumb 
+    if @crumb.update_attributes(crumb_params)
+      render json: @crumb
+    else
+      render nothing: true, status: 401
+    end
   end
 
   def destroy
     get_crumb
-    if @crumb.destroy
+    if @crumb && @crumb.destroy
       render nothing: true, status: 200
     else
       render nothing: true, status: 401
@@ -27,7 +31,7 @@ class Api::CrumbsController < ApplicationController
 
   private
 
-  def crumbs_params
+  def crumb_params
     params.require(:crumb).permit(:record_date, :measurement) 
   end
 
@@ -40,8 +44,8 @@ class Api::CrumbsController < ApplicationController
 
   def get_crumb
     @crumb = Crumb.find_by(id: params[:id])
-    unless @crumb && @crumb.tail == @tail
-      render nothing: true, status: 401
-    end
+    # unless @crumb && @crumb.tail == @tail
+    #   render nothing: true, status: 401
+    # end
   end
 end

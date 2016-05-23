@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :tail do
     name Faker::Name.title
-    user { build(:user) }
+    association :user, factory: :user
   end
 end

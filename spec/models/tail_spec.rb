@@ -6,6 +6,7 @@ RSpec.describe Tail, type: :model do
   it { should validate_presence_of(:name) }
 
   context 'name scoping -' do
+    let(:user) { FactoryGirl.build(:user) }
     let!(:tail) { FactoryGirl.create(:tail, name: 'test') }
 
     it 'should not allow same name for same user' do
@@ -19,7 +20,7 @@ RSpec.describe Tail, type: :model do
     end
 
     it 'should allow same name for different user' do
-      new_tail = FactoryGirl.build(:tail, name: 'test')
+      new_tail = FactoryGirl.build(:tail, name: 'test', user: user)
       expect(new_tail.save).to eq true
     end
 
