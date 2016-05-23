@@ -113,5 +113,18 @@ RSpec.describe Api::CrumbsController, type: :controller do
 
       it { should respond_with 401 }
     end
+
+    context 'valid crumb, invalid tail' do
+      before do
+        request = delete :destroy, { tail_id: 10000, id: crumb.id }
+      end
+
+      it 'does not destroy the crumb' do
+        crumbs = tail.crumbs
+        expect(crumbs).to_not be_empty
+      end
+
+      it { should respond_with 401 }
+    end
   end
 end
